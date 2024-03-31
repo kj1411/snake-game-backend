@@ -208,11 +208,14 @@ app = FastAPI()
 async def read_root():
     return {"message": "Snake Game"}
 
+from fastapi import BackgroundTasks
+
 @app.post("/game")
-async def run_game():
-    snakeGame()
+async def run_game(background_tasks: BackgroundTasks):
+    background_tasks.add_task(snakeGame)
     return {"message": "Game Running"}
+
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app)
