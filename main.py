@@ -1,8 +1,6 @@
 import pygame
 import time
 import random
-from fastapi import FastAPI, BackgroundTasks
-from fastapi.middleware.cors import CORSMiddleware
 
 
 def snakeGame():
@@ -201,27 +199,4 @@ def snakeGame():
 
     gameLoop(level,score)
 
-
-
-app = FastAPI()
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["GET", "POST"],
-    allow_headers=["*"],
-)
-
-@app.get("/")
-async def read_root():
-    return {"message": "Snake Game"}
-
-@app.post("/game")
-async def run_game(background_tasks: BackgroundTasks):
-    background_tasks.add_task(snakeGame)
-    return {"message": "Game Running"}
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app)
+snakeGame()
