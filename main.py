@@ -199,4 +199,5 @@ def snakeGame():
 
     gameLoop(level,score)
 
-snakeGame()
+if __name__ == "__main__":
+    snakeGame()
