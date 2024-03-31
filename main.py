@@ -2,6 +2,10 @@ import pygame
 import time
 import random
 from fastapi import FastAPI
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 def snakeGame():
@@ -215,4 +219,4 @@ async def run_game():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host=os.environ['HOME'], port=8000)
