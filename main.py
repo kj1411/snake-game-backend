@@ -177,7 +177,7 @@ def snakeGame():
                     del snake_list[i][0]
                 our_snake(dis_block, snake_list)
 
-            # Check if player 1 eats the food
+            # Check if player eats the food
             if x1 == foodx and y1 == foody:
                 foodx = round(random.randrange(0, dis_width - dis_block) / 10.0) * 10.0
                 foody = round(random.randrange(0, dis_height - dis_block) / 10.0) * 10.0
@@ -198,6 +198,7 @@ def snakeGame():
 
 
     gameLoop(level,score)
+
 
 if __name__ == "__main__":
     snakeGame()
