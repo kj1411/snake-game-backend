@@ -1,7 +1,8 @@
 import pygame
 import time
 import random
-from fastapi import FastAPI
+from fastapi import FastAPI, BackgroundTasks
+from fastapi.middleware.cors import CORSMiddleware
 
 
 def snakeGame():
@@ -203,12 +204,17 @@ def snakeGame():
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 async def read_root():
     return {"message": "Snake Game"}
-
-from fastapi import BackgroundTasks
 
 @app.post("/game")
 async def run_game(background_tasks: BackgroundTasks):
